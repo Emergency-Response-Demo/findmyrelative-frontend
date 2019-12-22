@@ -219,16 +219,24 @@ interface DisplayListProps {
 }
 
 const DisplayList: React.FC<DisplayListProps> = props => {
-  let content = props.dataArray.map((val: any, key: number) => (
+  let content:any;
+  console.table(props.dataArray);
+  if (props.dataArray.length === 0) {
+    if(props.isReady === false){
+      content = <Alert
+      variant="danger"
+      isInline
+      title="No data available"
+    />;
+    }else{
+      content = <p></p>;
+    }
+  }else{
+    content = props.dataArray.map((val: any, key: number) => (
     <li key={key}>
       <VictimDetail data={val.map}></VictimDetail>
     </li>
   ));
-  if (props.dataArray.length === 0) {
-    content = <p>No data available.</p>;
-  }
-  if (!props.isReady) {
-    content = <p>Loading...</p>;
   }
   if (!props.responseOk) {
     content = (
