@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PageSection, TextInput, Button } from "@patternfly/react-core";
 
 import SearchData from "./types";
+import "./App.css"
 
 interface SearchFormProps {
   onFormSubmit: (data: SearchData) => void;
@@ -19,19 +20,16 @@ const SearchForm: React.FC<SearchFormProps> = props => {
 
   return (
     <PageSection>
-      <form onSubmit={handleSubmit}>
+      <form style={{ textAlign: "center" }} onSubmit={handleSubmit}>
         <TextInput
           type="search"
-          placeholder="Name"
-          style={{ maxWidth: "20em", marginRight: "1em", alignItems: "center" }}
+          placeholder="Search Victim..."
+          className = "searchbar"
           isRequired={true}
           value={name}
           onChange={handleNameChange}
           aria-label="Search by Name"
         />
-        <Button type="submit" aria-label="search" isInline={true}>
-          Search
-        </Button>
       </form>
     </PageSection>
   );

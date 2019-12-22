@@ -16,7 +16,6 @@ import {
 import mapboxgl from "mapbox-gl";
 import marker from "./icons/marker-red.png";
 import shelter from "./icons/shelter.png";
-
 interface MapDisplayProps {
   position: any;
   id: string;

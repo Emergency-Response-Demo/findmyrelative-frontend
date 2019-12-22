@@ -9,13 +9,15 @@ import DisplayList from "./Display";
 
 const logoProps = {
   href: "https://erdemo.io",
-  target: "_blank"
+  target: "_self",
+  color: "white"
 };
 
 const Header = (
   <PageHeader
     logo="Find My Relative"
     logoProps={logoProps}
+    style={{color:"white", fontFamily: "monospace"}}
     toolbar="Toolbar"
     avatar=" | Avatar"
   />
