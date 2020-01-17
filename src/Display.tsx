@@ -128,7 +128,9 @@ const status = {
 const VictimDetail: React.FC<VictimDetailProps> = props => {
   const [address, setAddress] = useState("");
   const [neighbourAddress, setNeighbourAddress] = useState("");
-  console.log("longitude ::" + props.data.lon + "latitude: ::" + props.data.lat)
+  console.log(
+    "longitude ::" + props.data.lon + "latitude: ::" + props.data.lat
+  );
   const host = `https://api.mapbox.com/geocoding/v5/mapbox.places/${props.data.lon},${props.data.lat}.json?`;
   fetch(
     host +
@@ -243,7 +245,7 @@ const DisplayList: React.FC<DisplayListProps> = props => {
     ));
   }
 
-  if (props.responseOk == "FindMyRelative service") {
+  if (props.responseOk === "FindMyRelative service") {
     content = (
       <Alert
         variant="danger"
@@ -252,7 +254,7 @@ const DisplayList: React.FC<DisplayListProps> = props => {
       />
     );
   }
-  if (props.responseOk == "EmergencyResponseDemo service") {
+  if (props.responseOk === "EmergencyResponseDemo service") {
     content = (
       <Alert
         variant="danger"

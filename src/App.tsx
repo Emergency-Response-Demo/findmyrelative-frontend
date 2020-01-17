@@ -35,48 +35,51 @@ const App: React.FC = () => {
     fetch(
       process.env.REACT_APP_BACKEND_URL + `/find/victim/byName/${data.name}`
     )
-    .then((response) => {
-      if (response.ok) {
-        // Returning the JSON response if HTTP status response code is 200/201
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.indexOf("application/json") !== -1) {
-          // Returns JSON object if the response is of type JSON.
-          return response.json();
+      .then(response => {
+        if (response.ok) {
+          // Returning the JSON response if HTTP status response code is 200/201
+          const contentType = response.headers.get("content-type");
+          if (contentType && contentType.indexOf("application/json") !== -1) {
+            // Returns JSON object if the response is of type JSON.
+            return response.json();
+          } else {
+            // Returns string if the response is of type string.
+            return response.text();
+          }
         } else {
-          // Returns string if the response is of type string.
-          return response.text();
-        }
-      } else {
-        // Catch other HTTP status response.
+          // Catch other HTTP status response.
           setVictimList(null);
           setIsDataReady(true);
           // Setting the actual status to setIsResponseOk()
           setIsResponseOk(response.status.toString());
-        throw new Error(response.status.toString());
-      }
-    })
-    .then(async (response) => {
-      console.log(response);
-      // To catch EmergencyResponseDemo service error.
-
-      if(response.message == "EmergencyResponseDemo service error message"){
-        setVictimList(null);
-        setIsDataReady(false);
-        setIsResponseOk("EmergencyResponseDemo service");
-      }else{
-        setIsDataReady(true);
-        setVictimList(response.map.victims.list);
-        setIsResponseOk(true);
-      }      
-    })
-    .catch((error) => {
-      if(error.message == "NetworkError when attempting to fetch resource."){
-        setVictimList(null);
-        setIsDataReady(false);
-        setIsResponseOk("FindMyRelative service");
-      }
-      console.log(error)
-    });
+          throw new Error(response.status.toString());
+        }
+      })
+      .then(async response => {
+        console.log(response);
+        // To catch EmergencyResponseDemo service error.
+        if (
+          response.message === "EmergencyResponseDemo service error message"
+        ) {
+          setVictimList(null);
+          setIsDataReady(false);
+          setIsResponseOk("EmergencyResponseDemo service");
+        } else {
+          setIsDataReady(true);
+          setVictimList(response.map.victims.list);
+          setIsResponseOk(true);
+        }
+      })
+      .catch(error => {
+        if (
+          error.message === "NetworkError when attempting to fetch resource."
+        ) {
+          setVictimList(null);
+          setIsDataReady(false);
+          setIsResponseOk("FindMyRelative service");
+        }
+        console.log(error);
+      });
   };
 
   return (
