@@ -26,7 +26,7 @@ const Header = (
 );
 
 const OldApplication: React.FC = () => {
-  const [victimList, setVictimList] = useState([]);
+  const [victimList, setVictimList] = useState();
   const [isDataReady, setIsDataReady] = useState(true);
   const [isResponseOk, setIsResponseOk] = useState();
 
@@ -104,7 +104,7 @@ const OldApplication: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Router>
-      <Route path="/" component={OldApplication} />
+      <Route path="/" component={OldApplication} exact />
       <Route path="/newfindmyrelative" component={Homepage} />
     </Router>
   );
