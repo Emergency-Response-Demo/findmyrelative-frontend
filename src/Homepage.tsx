@@ -1,7 +1,9 @@
 import React from 'react'
 
 import '@patternfly/react-core/dist/styles/base.css'
-import { Page, PageHeader } from '@patternfly/react-core'
+import { Page, PageHeader, PageSection } from '@patternfly/react-core'
+
+import SearchBar from './components/SearchBar'
 
 const logoProps = {
   href: 'https://erdemo.io',
@@ -18,7 +20,13 @@ const Header = (
 )
 
 const Homepage: React.FC = () => {
-  return <Page header={Header}></Page>
+  return (
+    <Page header={Header}>
+      <PageSection>
+        <SearchBar onFormSubmit={() => {}} />
+      </PageSection>
+    </Page>
+  )
 }
 
 export default Homepage
