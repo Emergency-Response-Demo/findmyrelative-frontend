@@ -1,6 +1,8 @@
 import React from 'react'
 import { TextInput, Button } from '@patternfly/react-core'
 
+import './SearchBar.css'
+
 interface SearchBarProps {
   onFormSubmit: () => void;
 }
@@ -11,7 +13,7 @@ const SearchBar: React.FC<SearchBarProps> = (props) => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <TextInput type="text" aria-label="search input" />
+      <TextInput className="search-input-field" type="text" aria-label="search input" />
       <Button type="submit" aria-label="search button" isInline={true}>
         Search
       </Button>
