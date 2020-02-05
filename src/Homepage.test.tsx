@@ -1,11 +1,17 @@
 import React from 'react'
 import Enzyme from 'enzyme'
-import Homepage from './Homepage'
+import { Homepage } from './Homepage'
 
 const { mount } = Enzyme
 
-// import Page from '@patternfly/react-core'
+function setup () {
+  const enzymeWrapper = mount(<Homepage />)
+  return { enzymeWrapper }
+}
 
-it('renders without crashing', () => {
-  mount(<Homepage />)
+it('should render itself and subcomponents', () => {
+  const { enzymeWrapper } = setup()
+  expect(enzymeWrapper.exists('Page')).toBe(true)
+  expect(enzymeWrapper.exists('PageSection')).toBe(true)
+  expect(enzymeWrapper.exists('SearchBar')).toBe(true)
 })
