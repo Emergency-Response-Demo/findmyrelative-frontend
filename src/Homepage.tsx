@@ -2,7 +2,6 @@ import React from 'react'
 
 import '@patternfly/react-core/dist/styles/base.css'
 import { Page, PageHeader, PageSection } from '@patternfly/react-core'
-
 import SearchBar from './components/SearchBar'
 
 const logoProps = {
@@ -19,14 +18,12 @@ const Header = (
   />
 )
 
-const Homepage: React.FC = () => {
-  return (
-    <Page header={Header}>
-      <PageSection>
-        <SearchBar onFormSubmit={() => {}} />
-      </PageSection>
-    </Page>
-  )
-}
+const Homepage: React.FC = () => (
+  <Page header={Header}>
+    <PageSection>
+      <SearchBar onFormSubmit={() => {}} />
+    </PageSection>
+  </Page>
+)
 
 export default Homepage
