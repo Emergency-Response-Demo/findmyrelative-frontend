@@ -1,24 +1,32 @@
 import React from 'react'
 
+import { Page, PageHeader, PageSection } from '@patternfly/react-core'
+import SearchBar from './components/SearchBar'
 import '@patternfly/react-core/dist/styles/base.css'
-import { Page, PageHeader } from '@patternfly/react-core'
 
-const logoProps = {
-  href: 'https://erdemo.io',
-  target: '_blank'
+interface HeaderProps {
+  logo: { href: string; target: string };
 }
-
-const Header = (
+const Header: React.FC<HeaderProps> = ({ logo }) => (
   <PageHeader
     logo="Find My Relative"
-    logoProps={logoProps}
+    logoProps={logo}
     toolbar="Toolbar"
     avatar=" | Avatar"
   />
 )
 
-const Homepage: React.FC = () => {
-  return <Page header={Header}></Page>
+const appLogo = {
+  href: 'https://erdemo.io',
+  target: '_blank'
 }
+
+const Homepage: React.FC = () => (
+  <Page header={<Header logo={appLogo} />}>
+    <PageSection>
+      <SearchBar onFormSubmit={() => {}} />
+    </PageSection>
+  </Page>
+)
 
 export default Homepage
