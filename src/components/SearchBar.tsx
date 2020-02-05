@@ -7,9 +7,9 @@ interface SearchBarProps {
   onFormSubmit: () => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = (props) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onFormSubmit }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    props.onFormSubmit()
+    onFormSubmit()
   }
   return (
     <form onSubmit={handleSubmit}>
