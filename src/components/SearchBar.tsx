@@ -14,7 +14,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onFormSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <TextInput
-        className="search-input-field"
+        className="search-bar-input"
         type="text"
         placeholder="Name"
         aria-label="search input"
