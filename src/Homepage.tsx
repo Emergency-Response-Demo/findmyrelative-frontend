@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import history from './history'
 import { Page, PageHeader, PageSection } from '@patternfly/react-core'
 import SearchBar from './components/SearchBar'
 import { searchName } from './redux/actionCreators'
@@ -39,6 +40,7 @@ interface DispatchFromProps {
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
   fetchDetails: (name: string) => {
+    history.push(`/newfindmyrelative?q=${name}`, {})
     dispatch(searchName(name))
   }
 })
