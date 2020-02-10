@@ -23,15 +23,17 @@ const appLogo = {
   target: '_blank'
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+interface DispatchFromProps {
+  fetchDetails: (name: string) => void;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
   fetchDetails: (name: string) => {
     dispatch(searchName(name))
   }
 })
 
-interface HomepageProps {
-  fetchDetails: (name: string) => void;
-}
+type HomepageProps = DispatchFromProps;
 
 export const Homepage: React.FC<HomepageProps> = ({ fetchDetails }) => (
   <Page header={<Header logo={appLogo} />}>
@@ -41,4 +43,7 @@ export const Homepage: React.FC<HomepageProps> = ({ fetchDetails }) => (
   </Page>
 )
 
-export default connect(null, mapDispatchToProps)(Homepage)
+export default connect<null, DispatchFromProps, HomepageProps>(
+  null,
+  mapDispatchToProps
+)(Homepage)
