@@ -7,7 +7,7 @@ it('should return the initial state', () => {
 
 it('should handle SEARCH_NAME', () => {
   const expectedState = 'test'
-  expect(nameReducer(undefined, { type: SEARCH_NAME, name: 'test' })).toEqual(
-    expectedState
-  )
+  expect(
+    nameReducer(undefined, { type: SEARCH_NAME, payload: { name: 'test' } })
+  ).toEqual(expectedState)
 })

@@ -5,7 +5,7 @@ it('should create an action to search victim name', () => {
   const name = 'Chuck Norris'
   const expectedAction = {
     type: SEARCH_NAME,
-    name
+    payload: { name }
   }
   expect(searchName(name)).toEqual(expectedAction)
 })

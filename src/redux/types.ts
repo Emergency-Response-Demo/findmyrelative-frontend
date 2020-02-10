@@ -5,7 +5,9 @@ interface Action {
 }
 
 interface SearchNameAction {
-  name: string;
+  payload: {
+    name: string;
+  };
 }
 
 export type SearchNameType = SearchNameAction & Action;
