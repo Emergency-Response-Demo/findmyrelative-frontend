@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import { rootReducer } from './redux/reducers'
 import "@patternfly/react-core/dist/styles/base.css";
 import { Page, PageHeader } from "@patternfly/react-core";
 
@@ -101,13 +103,17 @@ const OldApplication: React.FC = () => {
   );
 };
 
+const store = createStore(rootReducer)
+
 const App: React.FC = () => {
   return (
     <Router>
       <Route path="/" component={OldApplication} exact />
-      <Route path="/newfindmyrelative" component={Homepage} />
+      <Provider store={store}>
+        <Route path="/newfindmyrelative" component={Homepage} />
+      </Provider>
     </Router>
-  );
-};
+  )
+}
 
 export default App;

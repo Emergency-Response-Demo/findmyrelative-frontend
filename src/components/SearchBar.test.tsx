@@ -3,15 +3,24 @@ import Enzyme from 'enzyme'
 
 import SearchBar from './SearchBar'
 
-const { mount } = Enzyme
+const { shallow } = Enzyme
 
-it('renders without crashing', () => {
-  mount(<SearchBar />)
+function setup () {
+  const props = {
+    onFormSubmit: jest.fn()
+  }
+  const enzymeWrapper = shallow(<SearchBar {...props} />)
+  return { props, enzymeWrapper }
+}
+
+it('should render itself and subcomponents', () => {
+  const { enzymeWrapper } = setup()
+  expect(enzymeWrapper.find('form')).toHaveLength(1)
+  expect(enzymeWrapper.find('TextInput')).toHaveLength(1)
 })
 
-it('runs callback on submit', () => {
-  const callback = jest.fn()
-  const wrapper = mount(<SearchBar onFormSubmit={callback} />)
-  wrapper.find('form').simulate('submit')
-  expect(callback).toHaveBeenCalled()
+it('should run callback on submit', () => {
+  const { props, enzymeWrapper } = setup()
+  enzymeWrapper.simulate('submit', new Event('click'))
+  expect(props.onFormSubmit).toHaveBeenCalled()
 })
