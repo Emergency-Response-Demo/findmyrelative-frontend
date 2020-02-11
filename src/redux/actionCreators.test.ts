@@ -1,11 +1,30 @@
-import { searchName } from './actionCreators'
-import { SEARCH_NAME } from './types'
+import { requestDetails, recieveDetails, searchName } from './actionCreators'
+import { REQUEST_DETAILS, RECIEVE_DETAILS } from './types'
 
-it('should create an action to search victim name', () => {
+it('should create an action to update victim name', () => {
   const name = 'Chuck Norris'
   const expectedAction = {
-    type: SEARCH_NAME,
+    type: REQUEST_DETAILS,
     payload: { name }
   }
-  expect(searchName(name)).toEqual(expectedAction)
+  expect(requestDetails(name)).toEqual(expectedAction)
+})
+
+it('should create action to update recieved details', () => {
+  const expectedAction = {
+    type: RECIEVE_DETAILS,
+    payload: { wasSuccessful: true, data: ['example_data'] }
+  }
+  expect(recieveDetails(true, [{ map: 'example_data' }])).toEqual(
+    expectedAction
+  )
+})
+
+it('should dispatch the actions to update store during API call', () => {
+  const fn = jest.fn()
+  searchName('test')(fn)
+  expect(fn).toHaveBeenCalledWith({
+    type: REQUEST_DETAILS,
+    payload: { name: 'test' }
+  })
 })
