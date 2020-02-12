@@ -1,10 +1,12 @@
 import React from 'react'
-import { Dispatch } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 import { connect } from 'react-redux'
-import history from './history'
 import { Page, PageHeader, PageSection } from '@patternfly/react-core'
+import history from './history'
 import SearchBar from './components/SearchBar'
 import { searchName } from './redux/actionCreators'
+import { RootState } from './redux/reducers'
+import { Action } from './redux/reduxTypes'
 import '@patternfly/react-core/dist/styles/base.css'
 
 interface HeaderProps {
@@ -38,7 +40,9 @@ interface DispatchFromProps {
   fetchDetails: (name: string) => void;
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, void, Action>
+): DispatchFromProps => ({
   fetchDetails: (name: string) => {
     history.push(`/newfindmyrelative?q=${name}`, {})
     dispatch(searchName(name))

@@ -1,8 +1,8 @@
-import { SearchNameType, SEARCH_NAME } from '../types'
+import { RequestDetailsType, REQUEST_DETAILS } from '../reduxTypes'
 
-export function nameReducer (state = '', action: SearchNameType) {
+export function nameReducer (state = '', action: RequestDetailsType) {
   switch (action.type) {
-    case SEARCH_NAME:
+    case REQUEST_DETAILS:
       return action.payload.name
     default:
       return state
