@@ -1,10 +1,12 @@
 import { Dispatch } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+import { RootState } from './reducers'
 import {
   REQUEST_DETAILS,
   RECIEVE_DETAILS,
   RequestDetailsType,
   RecieveDetailsType,
-  AppThunk
+  Action
 } from './types'
 import { VictimDetail } from '../types'
 import { getVictimData } from '../mock/mockSearchData'
@@ -24,6 +26,13 @@ export function recieveDetails (
     payload: { isSuccessful, data: parsedData }
   }
 }
+
+type AppThunk<ReturnType = void> = ThunkAction<
+  void,
+  RootState,
+  unknown,
+  Action
+>;
 
 export function searchName (name: string): AppThunk {
   return function (dispatch: Dispatch): void {
