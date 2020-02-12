@@ -4,7 +4,7 @@ import { REQUEST_DETAILS, RECIEVE_DETAILS } from '../types'
 it('should return the initial state', () => {
   expect(detailsReducer(undefined, {})).toEqual({
     isFetching: false,
-    wasSuccessful: true,
+    isSuccessful: true,
     hasData: false,
     data: []
   })
@@ -18,7 +18,7 @@ it('should handle REQUEST_DETAILS type', () => {
 it('should update data on successful request', () => {
   const nextState = detailsReducer(undefined, {
     type: RECIEVE_DETAILS,
-    payload: { wasSuccessful: true, data: ['example_data'] }
+    payload: { isSuccessful: true, data: ['example_data'] }
   })
   expect(nextState.data).toEqual(['example_data'])
 })
@@ -26,7 +26,7 @@ it('should update data on successful request', () => {
 it('should clear data on failed request', () => {
   const nextState = detailsReducer(undefined, {
     type: RECIEVE_DETAILS,
-    payload: { wasSuccessful: false }
+    payload: { isSuccessful: false }
   })
   expect(nextState.data).toEqual([])
   expect(nextState.hasData).toBe(false)

@@ -24,7 +24,7 @@ interface RequestDetailsAction {
 
 interface RecieveDetailsAction {
   payload: {
-    wasSuccessful: boolean;
+    isSuccessful: boolean;
     data: VictimDetail[];
   };
 }

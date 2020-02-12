@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   isFetching: false,
-  wasSuccessful: true,
+  isSuccessful: true,
   hasData: false,
   data: []
 }
@@ -18,7 +18,7 @@ export function detailsReducer (state = initialState, action: ActionType) {
     case REQUEST_DETAILS:
       return Object.assign(state, { isFetching: true })
     case RECIEVE_DETAILS:
-      if (action.payload.wasSuccessful) {
+      if (action.payload.isSuccessful) {
         return Object.assign(state, {
           hasData: true,
           isFetching: false,

@@ -15,13 +15,13 @@ export function requestDetails (name: string): RequestDetailsType {
 
 type RawVictimDetail = { map: VictimDetail };
 export function recieveDetails (
-  wasSuccessful: boolean,
+  isSuccessful: boolean,
   data: RawVictimDetail[]
 ): RecieveDetailsType {
   const parsedData = data.map((item: RawVictimDetail) => item.map)
   return {
     type: RECIEVE_DETAILS,
-    payload: { wasSuccessful, data: parsedData }
+    payload: { isSuccessful, data: parsedData }
   }
 }
 

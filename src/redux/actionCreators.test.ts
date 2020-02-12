@@ -13,7 +13,7 @@ it('should create an action to update victim name', () => {
 it('should create action to update recieved details', () => {
   const expectedAction = {
     type: RECIEVE_DETAILS,
-    payload: { wasSuccessful: true, data: ['example_data'] }
+    payload: { isSuccessful: true, data: ['example_data'] }
   }
   expect(recieveDetails(true, [{ map: 'example_data' }])).toEqual(
     expectedAction
