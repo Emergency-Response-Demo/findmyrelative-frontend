@@ -5,7 +5,6 @@ it('should return the initial state', () => {
   expect(detailsReducer(undefined, {})).toEqual({
     isFetching: false,
     isSuccessful: true,
-    hasData: false,
     data: []
   })
 })
@@ -29,5 +28,4 @@ it('should clear data on failed request', () => {
     payload: { isSuccessful: false }
   })
   expect(nextState.data).toEqual([])
-  expect(nextState.hasData).toBe(false)
 })

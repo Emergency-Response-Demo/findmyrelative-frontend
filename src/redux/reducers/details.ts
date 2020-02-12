@@ -8,7 +8,6 @@ import {
 const initialState = {
   isFetching: false,
   isSuccessful: true,
-  hasData: false,
   data: []
 }
 
@@ -21,12 +20,11 @@ export function detailsReducer (state = initialState, action: ActionType) {
       if (action.payload.isSuccessful) {
         return {
           ...state,
-          hasData: true,
           isFetching: false,
           data: action.payload.data
         }
       } else {
-        return { ...state, hasData: false, isFetching: false, data: [] }
+        return { ...state, isFetching: false, data: [] }
       }
     default:
       return state
