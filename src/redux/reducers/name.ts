@@ -1,4 +1,4 @@
-import { RequestDetailsType, REQUEST_DETAILS } from '../types'
+import { RequestDetailsType, REQUEST_DETAILS } from '../reduxTypes'
 
 export function nameReducer (state = '', action: RequestDetailsType) {
   switch (action.type) {

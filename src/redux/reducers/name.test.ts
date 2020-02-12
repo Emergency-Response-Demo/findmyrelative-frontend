@@ -1,5 +1,5 @@
 import { nameReducer } from './name'
-import { REQUEST_DETAILS } from '../types'
+import { REQUEST_DETAILS } from '../reduxTypes'
 
 it('should return the initial state', () => {
   expect(nameReducer(undefined, {})).toEqual('')

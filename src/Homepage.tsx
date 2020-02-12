@@ -6,7 +6,7 @@ import history from './history'
 import SearchBar from './components/SearchBar'
 import { searchName } from './redux/actionCreators'
 import { RootState } from './redux/reducers'
-import { Action } from './redux/types'
+import { Action } from './redux/reduxTypes'
 import '@patternfly/react-core/dist/styles/base.css'
 
 interface HeaderProps {

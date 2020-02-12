@@ -1,5 +1,5 @@
 import { detailsReducer } from './details'
-import { REQUEST_DETAILS, RECIEVE_DETAILS } from '../types'
+import { REQUEST_DETAILS, RECIEVE_DETAILS } from '../reduxTypes'
 
 it('should return the initial state', () => {
   expect(detailsReducer(undefined, {})).toEqual({

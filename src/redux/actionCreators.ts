@@ -7,7 +7,7 @@ import {
   RequestDetailsType,
   RecieveDetailsType,
   Action
-} from './types'
+} from './reduxTypes'
 import { VictimDetail } from '../types'
 import { getVictimData } from '../mock/mockSearchData'
 

@@ -3,7 +3,7 @@ import {
   RECIEVE_DETAILS,
   RequestDetailsType,
   RecieveDetailsType
-} from '../types'
+} from '../reduxTypes'
 
 const initialState = {
   isFetching: false,

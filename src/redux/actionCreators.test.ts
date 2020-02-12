@@ -1,5 +1,5 @@
 import { requestDetails, recieveDetails, searchName } from './actionCreators'
-import { REQUEST_DETAILS, RECIEVE_DETAILS } from './types'
+import { REQUEST_DETAILS, RECIEVE_DETAILS } from './reduxTypes'
 
 it('should create an action to update victim name', () => {
   const name = 'Chuck Norris'
