@@ -1,13 +1,16 @@
 import { nameReducer } from './name'
-import { SEARCH_NAME } from '../types'
+import { REQUEST_DETAILS } from '../types'
 
 it('should return the initial state', () => {
   expect(nameReducer(undefined, {})).toEqual('')
 })
 
-it('should handle SEARCH_NAME', () => {
+it('should handle REQUEST_DETAILS', () => {
   const expectedState = 'test'
   expect(
-    nameReducer(undefined, { type: SEARCH_NAME, payload: { name: 'test' } })
+    nameReducer(undefined, {
+      type: REQUEST_DETAILS,
+      payload: { name: 'test' }
+    })
   ).toEqual(expectedState)
 })
