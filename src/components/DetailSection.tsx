@@ -1,28 +1,30 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '../redux/reducers'
 import LoadingSpinner from './LoadingSpinner'
 import DisplayList from './DisplayList'
 import FailAlert from './FailAlert'
 
-type DisplaySectionProps = RootState['details'];
+type DisplaySectionProps = PropsFromRedux;
 
-const DisplaySection: React.FC<DisplaySectionProps> = ({
+export const DisplaySection: React.FC<DisplaySectionProps> = ({
   isFetching,
   isSuccessful,
   data
 }) => {
-  if (isFetching) {
-    return <LoadingSpinner />
+  switch (true) {
+    case isFetching:
+      return <LoadingSpinner />
+    case isSuccessful:
+      return <DisplayList data={data} />
+    default:
+      return <FailAlert />
   }
-  if (isSuccessful) {
-    return <DisplayList data={data} />
-  }
-  return <FailAlert />
 }
 
-const mapStateToProps = (state: RootState): DisplaySectionProps => {
-  return state.details
-}
+const mapStateToProps = (state: RootState) => state.details
 
-export default connect(mapStateToProps)(DisplaySection)
+const connector = connect(mapStateToProps)
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(DisplaySection)
