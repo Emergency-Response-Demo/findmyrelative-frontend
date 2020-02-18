@@ -15,6 +15,7 @@ import {
   Text,
   TextContent
 } from '@patternfly/react-core'
+import TextAddress from './TextAddress'
 import { VictimDetail } from '../types'
 import MapDisplay from './MapDisplay'
 
@@ -62,6 +63,7 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
                     detail.timeStamp
                   ).toDateString()}`}</Text>
                   <Text>{`Phone: ${detail.victimPhoneNumber}`}</Text>
+                  <TextAddress lat={lat} lon={lon} />
                   <Chip isReadOnly>
                     People
                     <Badge isRead>{detail.numberOfPeople}</Badge>
