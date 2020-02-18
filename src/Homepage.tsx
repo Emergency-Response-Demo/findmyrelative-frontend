@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import { Page, PageHeader, PageSection } from '@patternfly/react-core'
 import history from './history'
 import SearchBar from './components/SearchBar'
+import DetailSection from './components/DetailSection'
 import { searchName } from './redux/actionCreators'
 import { RootState } from './redux/reducers'
 import { Action } from './redux/reduxTypes'
 import '@patternfly/react-core/dist/styles/base.css'
+import './Homepage.css'
 
 interface HeaderProps {
   logo: { href: string; target: string };
@@ -32,6 +34,9 @@ export const Homepage: React.FC<HomepageProps> = ({ fetchDetails }) => (
   <Page header={<Header logo={appLogo} />}>
     <PageSection>
       <SearchBar onFormSubmit={fetchDetails} />
+    </PageSection>
+    <PageSection className="homepage-detail-section">
+      <DetailSection />
     </PageSection>
   </Page>
 )

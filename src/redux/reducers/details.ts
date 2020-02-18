@@ -1,3 +1,4 @@
+import { VictimDetail } from '../../types'
 import {
   REQUEST_DETAILS,
   RECIEVE_DETAILS,
@@ -5,14 +6,22 @@ import {
   RecieveDetailsType
 } from '../reduxTypes'
 
-const initialState = {
+interface StateType {
+  isFetching: boolean;
+  isSuccessful: boolean;
+  data: VictimDetail[];
+}
+const initialState: StateType = {
   isFetching: false,
   isSuccessful: true,
   data: []
 }
 
 type ActionType = RequestDetailsType & RecieveDetailsType;
-export function detailsReducer (state = initialState, action: ActionType) {
+export function detailsReducer (
+  state = initialState,
+  action: ActionType
+): StateType {
   switch (action.type) {
     case REQUEST_DETAILS:
       return { ...state, isFetching: true }
@@ -21,10 +30,11 @@ export function detailsReducer (state = initialState, action: ActionType) {
         return {
           ...state,
           isFetching: false,
+          isSuccessful: true,
           data: action.payload.data
         }
       } else {
-        return { ...state, isFetching: false, data: [] }
+        return { ...state, isSuccessful: false, isFetching: false, data: [] }
       }
     default:
       return state
