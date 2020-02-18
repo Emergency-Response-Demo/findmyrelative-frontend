@@ -17,6 +17,7 @@ import {
 } from '@patternfly/react-core'
 import { VictimDetail } from '../types'
 import MapDisplay from './MapDisplay'
+import ShelterAddress from './ShelterAddress'
 
 const EmptyList: React.FC = () => (
   <EmptyState>
@@ -63,6 +64,7 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
                   ).toDateString()}`}</Text>
                   <Text>{`Phone: ${detail.victimPhoneNumber}`}</Text>
                   <Text>{detail.address}</Text>
+                  {detail.status !== 'REPORTED' && <ShelterAddress id={id} />}
                   <Chip isReadOnly>
                     People
                     <Badge isRead>{detail.numberOfPeople}</Badge>
