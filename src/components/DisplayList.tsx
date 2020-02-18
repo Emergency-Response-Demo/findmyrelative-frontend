@@ -54,7 +54,7 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
           <CardBody>
             <Split gutter="md">
               <SplitItem>
-                <MapDisplay lat={detail.lat} lon={detail.lon} />
+                <MapDisplay id={detail.id} lat={detail.lat} lon={detail.lon} />
               </SplitItem>
               <SplitItem>
                 <TextContent>
