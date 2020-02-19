@@ -5,9 +5,15 @@ import './MapDisplay.css'
 
 const LIGHT_RED = chart_global_danger_Color_100.value
 
-const mapsList: { [id: string]: mapboxgl.Map } = {}
+interface MapsListType {
+  [id: string]: mapboxgl.Map;
+}
+const mapsList: MapsListType = {}
 
-export const addMarkerToMap = (mapId: string, lngLat: [number, number]): void => {
+export const addMarkerToMap = (
+  mapId: string,
+  lngLat: [number, number]
+): void => {
   new mapboxgl.Marker({ color: LIGHT_RED })
     .setLngLat(lngLat)
     .addTo(mapsList[mapId])
@@ -15,13 +21,13 @@ export const addMarkerToMap = (mapId: string, lngLat: [number, number]): void =>
 
 interface MapDisplayProps {
   id: string;
-  lat: string;
-  lon: string;
+  latitude: string;
+  longitude: string;
 }
 
-const MapDisplay: React.FC<MapDisplayProps> = ({ id, lat, lon }) => {
+const MapDisplay: React.FC<MapDisplayProps> = ({ id, latitude, longitude }) => {
   useEffect(() => {
-    const lngLat = [Number(lon), Number(lat)] as [number, number]
+    const lngLat = [Number(longitude), Number(latitude)] as [number, number]
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN || ''
     const map = new mapboxgl.Map({
       container: id,
@@ -31,7 +37,7 @@ const MapDisplay: React.FC<MapDisplayProps> = ({ id, lat, lon }) => {
     })
     mapsList[id] = map
     addMarkerToMap(id, lngLat)
-  }, [id, lat, lon])
+  }, [id, latitude, longitude])
   return <div className="map" id={id}></div>
 }
 
