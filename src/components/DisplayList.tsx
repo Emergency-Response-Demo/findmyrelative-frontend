@@ -47,14 +47,14 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
   }
   return (
     <>
-      {data.map((detail) => (
-        <Card key={detail.id}>
+      {data.map(({ id, lat, lon, ...detail }) => (
+        <Card key={id}>
           <DisplayTitle name={detail.victimName} status={detail.status} />
           <Divider />
           <CardBody>
             <Split gutter="md">
               <SplitItem>
-                <MapDisplay lat={detail.lat} lon={detail.lon} />
+                <MapDisplay id={id} latitude={lat} longitude={lon} />
               </SplitItem>
               <SplitItem>
                 <TextContent>
