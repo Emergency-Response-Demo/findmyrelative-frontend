@@ -34,17 +34,47 @@ type AppThunk<ReturnType = void> = ThunkAction<
   Action
 >;
 
+const getAddress = (latitude: string, longitude: string): Promise<string> => {
+  const fetchURL =
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?` +
+    new URLSearchParams({
+      /* eslint @typescript-eslint/camelcase: ["error", {allow: ["access_token"]}] */
+      access_token: process.env.REACT_APP_MAPBOX_TOKEN as string
+    })
+  return fetch(fetchURL)
+    .then((response) => response.json())
+    .then((jsonData) => jsonData.features[0].place_name)
+}
+
 export function searchName (name: string): AppThunk {
-  return function (dispatch: Dispatch): void {
+  return async (dispatch: Dispatch): Promise<void> => {
     dispatch(requestDetails(name))
     if (process.env.REACT_APP_MOCK_API) {
       const mockResponse = getVictimData(name)
-      dispatch(recieveDetails(true, mockResponse.map.victims.list))
+      const detailsList = mockResponse.map.victims.list
+      for (let i = 0; i < detailsList.length; i++) {
+        const address = await getAddress(
+          detailsList[i].map.lat,
+          detailsList[i].map.lon
+        )
+        detailsList[i].map.address = address
+      }
+      dispatch(recieveDetails(true, detailsList))
     } else {
       fetch(process.env.REACT_APP_BACKEND_URL + `/find/victim/byName/${name}`)
         .then((response) => response.json())
         .then(
-          (data) => dispatch(recieveDetails(true, data.map.victims.list)),
+          async (data) => {
+            const detailsList = data.map.victims.list
+            for (let i = 0; i < detailsList.length; i++) {
+              const address = await getAddress(
+                detailsList[i].map.lat,
+                detailsList[i].map.lon
+              )
+              detailsList[i].map.address = address
+            }
+            dispatch(recieveDetails(true, detailsList))
+          },
           (error) => {
             dispatch(recieveDetails(false, []))
             console.error('Error making request: ', error)

@@ -8,6 +8,7 @@ export interface VictimDetail {
   victimPhoneNumber: string;
   timeStamp: number;
   status: string;
+  address: string;
 }
 
 export default interface SearchInput {
