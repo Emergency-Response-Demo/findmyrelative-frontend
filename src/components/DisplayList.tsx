@@ -62,6 +62,7 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
                     detail.timeStamp
                   ).toDateString()}`}</Text>
                   <Text>{`Phone: ${detail.victimPhoneNumber}`}</Text>
+                  <Text>{detail.address}</Text>
                   <Chip isReadOnly>
                     People
                     <Badge isRead>{detail.numberOfPeople}</Badge>
