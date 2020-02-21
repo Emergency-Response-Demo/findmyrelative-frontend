@@ -4,12 +4,15 @@ import { RootState } from './reducers'
 import {
   REQUEST_DETAILS,
   RECIEVE_DETAILS,
+  RECIEVE_SHELTER,
   RequestDetailsType,
   RecieveDetailsType,
+  RecieveShelterType,
   Action
 } from './reduxTypes'
-import { VictimDetail } from '../types'
+import { VictimDetail, ShelterDetail } from '../types'
 import { getVictimData } from '../mock/mockSearchData'
+import { getShelterData } from '../mock/mockShelterData'
 
 export function requestDetails (name: string): RequestDetailsType {
   return { type: REQUEST_DETAILS, payload: { name } }
@@ -80,6 +83,28 @@ export function searchName (name: string): AppThunk {
             console.error('Error making request: ', error)
           }
         )
+    }
+  }
+}
+
+export function recieveShelter (
+  id: string,
+  data: ShelterDetail
+): RecieveShelterType {
+  return { type: RECIEVE_SHELTER, payload: { id, data } }
+}
+
+export function fetchShelter (id: string) {
+  return function (dispatch: Dispatch): void {
+    if (process.env.REACT_APP_MOCK_API) {
+      const shelterData = getShelterData(id)
+      dispatch(recieveShelter(id, shelterData.map.shelter.map))
+    } else {
+      fetch(process.env.REACT_APP_BACKEND_URL + `/find/shelter/${id}`)
+        .then((response) => response.json())
+        .then((jsonData) => {
+          dispatch(recieveShelter(id, jsonData.map.shelter.map))
+        })
     }
   }
 }

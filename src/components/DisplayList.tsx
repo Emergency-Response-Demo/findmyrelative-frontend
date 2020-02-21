@@ -64,7 +64,7 @@ const DisplayList: React.FC<DisplayListProps> = ({ data }) => {
                   ).toDateString()}`}</Text>
                   <Text>{`Phone: ${detail.victimPhoneNumber}`}</Text>
                   <Text>{detail.address}</Text>
-                  {detail.status !== 'REPORTED' && <ShelterAddress id={id} />}
+                  <ShelterAddress id={id} status={detail.status} />
                   <Chip isReadOnly>
                     People
                     <Badge isRead>{detail.numberOfPeople}</Badge>
