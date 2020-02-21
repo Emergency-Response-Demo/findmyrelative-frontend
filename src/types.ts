@@ -11,6 +11,12 @@ export interface VictimDetail {
   address: string;
 }
 
+export interface ShelterDetail {
+  lat: string;
+  lon: string;
+  name: string;
+}
+
 export default interface SearchInput {
   name: string;
 }
