@@ -49,7 +49,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, void, Action>
 ): DispatchFromProps => ({
   fetchDetails: (name: string) => {
-    history.push(`/newfindmyrelative?q=${name}`, {})
+    history.push(`?q=${name}`, {})
     dispatch(searchName(name))
   }
 })
